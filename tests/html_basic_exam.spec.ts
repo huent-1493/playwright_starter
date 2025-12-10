@@ -16,7 +16,9 @@ Check:
 */
 import { test, expect } from "@playwright/test";
 
-test("test open page then fill field and register account", async ({ page }) => {
+test("test open page then fill field and register account", async ({
+  page,
+}) => {
   await page.goto(
     "https://material.playwrightvn.com/01-xpath-register-page.html"
   );
@@ -33,8 +35,8 @@ test("test open page then fill field and register account", async ({ page }) => 
   await countrySelect.selectOption(["canada"]);
 
   // Verify Date of Birth field was filled
-  const dateInput = page.locator('#dob');
-  await dateInput.fill('1996-09-05');
+  const dateInput = page.locator("#dob");
+  await dateInput.fill("1996-09-05");
 
   const femaleRadio = page.locator('input[name="gender"][value="female"]');
   const cookingCheckbox = page.locator(
@@ -60,9 +62,11 @@ test("test open page then fill field and register account", async ({ page }) => 
   // Register account
   await page.click('button:has-text("Register")');
   // Assert successful user registration (user displayed under table list)
-  const usersTable = page.locator('table');
-  const addedByName = usersTable.locator('tbody tr', { hasText: 'Hue Nguyen' });
-  const addedByEmail = usersTable.locator('tbody tr', { hasText: 'nguyen.thi.hue-c@sun-asterisk.com' });
+  const usersTable = page.locator("table");
+  const addedByName = usersTable.locator("tbody tr", { hasText: "Hue Nguyen" });
+  const addedByEmail = usersTable.locator("tbody tr", {
+    hasText: "nguyen.thi.hue-c@sun-asterisk.com",
+  });
 
   await expect(addedByName).toBeVisible();
   await expect(addedByEmail).toBeVisible();
